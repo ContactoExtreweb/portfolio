@@ -1,10 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/sections/Hero.astro';
 import { useTranslations } from '../../i18n';
 
 const t = useTranslations('en');
 ---
 
 <Layout lang="en" title={t('meta.title')} description={t('meta.description')}>
-  <!-- Sections: added one by one following the plan -->
+  <Hero lang="en" />
 </Layout>

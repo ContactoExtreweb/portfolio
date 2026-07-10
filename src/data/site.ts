@@ -4,8 +4,8 @@ export const site = {
   name: 'Saúl Correyero',
   fullName: 'Saúl Correyero Pañero',
   location: 'Miajadas, Cáceres',
-  email: '', // COMPLETAR: email de contacto público
-  github: '', // COMPLETAR
+  email: 'saulcorreyerop@gmail.com',
+  github: 'https://github.com/Saulcorreyerop',
   linkedin: '', // COMPLETAR
   extreweb: 'https://extreweb.es',
 } as const;

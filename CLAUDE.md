@@ -105,5 +105,5 @@ Antes de maquetar la sección de proyectos, confirmar con Saúl cuáles entran y
 ## Pendiente de decidir con Saúl (preguntar antes de asumir)
 
 - Dominio del portfolio.
-- Email de contacto y enlaces públicos (GitHub, LinkedIn). (COMPLETAR)
+- LinkedIn (email y GitHub ya están en `src/data/site.ts`).
 - Foto personal: falta que pase el archivo.
