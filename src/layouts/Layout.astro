@@ -1,0 +1,49 @@
+---
+import '@fontsource-variable/archivo';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { Lang } from '../i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: Lang;
+}
+
+const { title, description, lang = 'es' } = Astro.props;
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      // Anti-FOUC: fija el tema antes del primer paint.
+      (function () {
+        let theme;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <Header lang={lang} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

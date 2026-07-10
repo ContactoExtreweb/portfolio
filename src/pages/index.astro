@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations('es');
+---
+
+<Layout lang="es" title={t('meta.title')} description={t('meta.description')}>
+  <!-- Secciones: se añaden una a una según el plan -->
+</Layout>
