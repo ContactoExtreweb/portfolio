@@ -1,16 +1,27 @@
 ---
-import type { Lang } from '../i18n';
+import { useTranslations, type Lang } from '../i18n'
+import { site } from '../data/site'
 
 interface Props {
-  lang: Lang;
+  lang: Lang
 }
 
-const { lang } = Astro.props;
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+const year = new Date().getFullYear()
+const langHref = lang === 'es' ? '/en/' : '/'
 ---
 
-<footer class="site-footer">
-  <div class="container">
-    <!-- Contenido del footer: se maqueta en su sección -->
+<footer class='site-footer'>
+  <div class='container footer-inner'>
+    <p class='footer-copy'>© {year} {site.name}</p>
+    <nav class='footer-links'>
+      <a href={site.github} target='_blank' rel='noopener'>GitHub</a>
+      <a href={site.linkedin} target='_blank' rel='noopener'>LinkedIn</a>
+      <a href={site.extreweb} target='_blank' rel='noopener'>extreweb.es</a>
+      <a href={langHref}>{t('footer.langSwitch')}</a>
+    </nav>
   </div>
 </footer>
 
@@ -19,5 +30,45 @@ const { lang } = Astro.props;
     padding-block: var(--space-8);
     padding-bottom: calc(var(--space-8) + var(--safe-bottom));
     border-top: 1px solid var(--color-border);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .footer-links a {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-text);
+  }
+
+  @media (min-width: 48rem) {
+    .footer-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 </style>

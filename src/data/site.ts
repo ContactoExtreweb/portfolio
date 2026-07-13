@@ -6,6 +6,6 @@ export const site = {
   location: 'Miajadas, Cáceres',
   email: 'saulcorreyerop@gmail.com',
   github: 'https://github.com/Saulcorreyerop',
-  linkedin: '', // COMPLETAR
+  linkedin: 'https://www.linkedin.com/in/saulcorreyero',
   extreweb: 'https://extreweb.es',
 } as const;

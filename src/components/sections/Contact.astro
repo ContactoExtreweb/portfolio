@@ -1,0 +1,86 @@
+---
+import { useTranslations, type Lang } from '../../i18n'
+import { site } from '../../data/site'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+---
+
+<section class='section' id='contacto'>
+  <div class='container'>
+    <h2 class='section-title'>
+      <span class='section-num'>04</span>{t('contact.title')}
+    </h2>
+
+    <p class='contact-lead'>{t('contact.lead')}</p>
+
+    <a class='contact-email' href={`mailto:${site.email}`}>{site.email}</a>
+
+    <ul class='contact-links'>
+      <li>
+        <a href={site.github} target='_blank' rel='noopener'>GitHub&nbsp;↗</a>
+      </li>
+      <li>
+        <a href={site.linkedin} target='_blank' rel='noopener'>LinkedIn&nbsp;↗</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .contact-lead {
+    margin-top: var(--space-6);
+    max-width: 44ch;
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+  }
+
+  .contact-email {
+    display: inline-block;
+    margin-top: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .contact-email:hover {
+    text-decoration: underline;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact-links a {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    /* área táctil cómoda en iOS */
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .contact-links a:hover {
+    color: var(--color-text);
+  }
+
+  @media (min-width: 48rem) {
+    .contact-email {
+      font-size: var(--text-2xl);
+    }
+  }
+</style>

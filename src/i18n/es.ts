@@ -27,4 +27,14 @@ export default {
   'projects.secondary.title': 'Otros proyectos',
 
   'skills.title': 'Stack y habilidades',
+
+  'extreweb.title': 'Extreweb',
+  'extreweb.kicker': 'Agencia propia',
+  'extreweb.text':
+    'Extreweb es la agencia de diseño y desarrollo web que cofundé con Pedro Fernández. Trabajamos desde Extremadura: él lleva la gestión, los sistemas y las redes; yo, el diseño y el desarrollo.',
+  'extreweb.cta': 'Visitar extreweb.es',
+
+  'contact.title': 'Contacto',
+  'contact.lead': '¿Tienes un proyecto en mente o buscas un desarrollador para tu equipo? Escríbeme.',
+  'footer.langSwitch': 'English',
 } as const;
