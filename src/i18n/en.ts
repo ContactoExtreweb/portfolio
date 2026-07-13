@@ -36,6 +36,10 @@ const en: Record<keyof typeof es, string> = {
     'Extreweb is the web design and development agency I co-founded with Pedro Fernández. We work from Extremadura: he handles management, systems and networks; I handle design and development.',
   'extreweb.cta': 'Visit extreweb.es',
 
+  'nav.projects': 'Projects',
+  'nav.contact': 'Contact',
+  'theme.toggle': 'Toggle light/dark theme',
+
   'contact.title': 'Contact',
   'contact.lead': 'Got a project in mind or looking for a developer for your team? Write me.',
   'footer.langSwitch': 'Español',
