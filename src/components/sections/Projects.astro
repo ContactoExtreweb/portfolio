@@ -1,0 +1,238 @@
+---
+import { useTranslations, type Lang } from '../../i18n'
+import { featured, product, secondary } from '../../data/projects'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+---
+
+<section class='section' id='proyectos'>
+  <div class='container'>
+    <h2 class='section-title'>
+      <span class='section-num'>02</span>{t('projects.title')}
+    </h2>
+
+    <div class='projects-list'>
+      {
+        featured.map((project) => (
+          <article class='project-card'>
+            <header class='project-header'>
+              <h3 class='project-name'>{project.name}</h3>
+              <a class='project-link' href={project.url} target='_blank' rel='noopener'>
+                {t('projects.visit')}&nbsp;↗
+              </a>
+            </header>
+
+            <p class='project-context'>{project.context[lang]}</p>
+
+            <dl class='project-meta'>
+              <div class='meta-item'>
+                <dt>{t('projects.label.role')}</dt>
+                <dd>{project.role[lang]}</dd>
+              </div>
+              <div class='meta-item'>
+                <dt>{t('projects.label.status')}</dt>
+                <dd>{project.status[lang]}</dd>
+              </div>
+              <div class='meta-item meta-stack'>
+                <dt>{t('projects.label.stack')}</dt>
+                <dd>{project.stack.join(' · ')}</dd>
+              </div>
+            </dl>
+
+            <ul class='project-highlights'>
+              {project.highlights[lang].map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+
+      <article class='project-card product-card'>
+        <p class='product-kicker'>{t('projects.product.kicker')}</p>
+        <header class='project-header'>
+          <h3 class='project-name'>{product.name}</h3>
+          <a class='project-link' href={product.url} target='_blank' rel='noopener'>
+            {t('projects.visit')}&nbsp;↗
+          </a>
+        </header>
+        <p class='project-context'>{product.context[lang]}</p>
+        <dl class='project-meta'>
+          <div class='meta-item meta-stack'>
+            <dt>{t('projects.label.stack')}</dt>
+            <dd>{product.stack.join(' · ')}</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+
+    <div class='secondary'>
+      <h3 class='secondary-title'>{t('projects.secondary.title')}</h3>
+      <ul class='secondary-list'>
+        {
+          secondary.map((project) => (
+            <li>
+              <a href={project.url} target='_blank' rel='noopener'>
+                {project.name}&nbsp;↗
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .project-card {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-elevated);
+  }
+
+  .project-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .project-name {
+    font-size: var(--text-xl);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  .project-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .project-link:hover {
+    text-decoration: underline;
+  }
+
+  .project-context {
+    margin-top: var(--space-3);
+    max-width: 60ch;
+    color: var(--color-text-muted);
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-8);
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .meta-item dt {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  .meta-item dd {
+    margin: var(--space-1) 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  .meta-stack {
+    flex-basis: 100%;
+  }
+
+  .project-highlights {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-width: 65ch;
+  }
+
+  .project-highlights li {
+    padding-left: var(--space-6);
+    position: relative;
+    font-size: var(--text-sm);
+  }
+
+  .project-highlights li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  .product-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .secondary {
+    margin-top: var(--space-12);
+  }
+
+  .secondary-title {
+    font-size: var(--text-base);
+    font-weight: 550;
+    color: var(--color-text-muted);
+  }
+
+  .secondary-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .secondary-list a {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .secondary-list a:hover {
+    color: var(--color-text);
+  }
+
+  @media (min-width: 48rem) {
+    .project-card {
+      padding: var(--space-8);
+    }
+
+    .meta-stack {
+      flex-basis: auto;
+    }
+  }
+</style>

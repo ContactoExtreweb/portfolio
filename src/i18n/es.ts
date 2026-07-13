@@ -17,4 +17,12 @@ export default {
   'about.p3':
     'Fuera del código, lo mío son los coches y el motorsport. Tanto, que varios de mis proyectos giran alrededor de ese mundo, en especial CarMeet, un proyecto propio que estoy desarrollando en React para unificar y facilitar el mundo del motor: una red social donde el objetivo principal es el encuentro entre apasionados por el motor. Para un futuro me gustaría especializarme en SEO e Inteligencia Artificial.',
   'about.photoAlt': 'Retrato de Saúl Correyero',
+
+  'projects.title': 'Proyectos',
+  'projects.label.role': 'Rol',
+  'projects.label.status': 'Estado',
+  'projects.label.stack': 'Stack',
+  'projects.visit': 'Ver web',
+  'projects.product.kicker': 'Producto propio · En desarrollo',
+  'projects.secondary.title': 'Otros proyectos',
 } as const;

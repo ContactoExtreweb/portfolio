@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/Hero.astro';
 import About from '../components/sections/About.astro';
+import Projects from '../components/sections/Projects.astro';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations('es');
@@ -10,4 +11,5 @@ const t = useTranslations('es');
 <Layout lang="es" title={t('meta.title')} description={t('meta.description')}>
   <Hero lang="es" />
   <About lang="es" />
+  <Projects lang="es" />
 </Layout>

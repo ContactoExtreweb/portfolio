@@ -19,6 +19,14 @@ const en: Record<keyof typeof es, string> = {
   'about.p3':
     'Beyond coding, my passion lies in cars and motorsport. In fact, several of my projects revolve around this world—most notably CarMeet, a personal project I am developing in React to bring the automotive community together and streamline the experience. It is a social network designed primarily to connect automotive enthusiasts. Looking ahead, I would like to specialize in SEO and Artificial Intelligence.',
   'about.photoAlt': 'Portrait of Saúl Correyero',
+
+  'projects.title': 'Projects',
+  'projects.label.role': 'Role',
+  'projects.label.status': 'Status',
+  'projects.label.stack': 'Stack',
+  'projects.visit': 'Visit site',
+  'projects.product.kicker': 'Own product · In development',
+  'projects.secondary.title': 'Other projects',
 };
 
 export default en;
