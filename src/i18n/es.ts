@@ -25,4 +25,6 @@ export default {
   'projects.visit': 'Ver web',
   'projects.product.kicker': 'Producto propio · En desarrollo',
   'projects.secondary.title': 'Otros proyectos',
+
+  'skills.title': 'Stack y habilidades',
 } as const;

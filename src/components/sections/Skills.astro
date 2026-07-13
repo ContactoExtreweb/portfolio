@@ -1,0 +1,74 @@
+---
+import { useTranslations, type Lang } from '../../i18n'
+import { skillGroups } from '../../data/skills'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+const itemText = (item: string | { es: string; en: string }) =>
+  typeof item === 'string' ? item : item[lang]
+---
+
+<section class='section' id='stack'>
+  <div class='container'>
+    <h2 class='section-title'>
+      <span class='section-num'>03</span>{t('skills.title')}
+    </h2>
+
+    <dl class='skills'>
+      {
+        skillGroups.map((group) => (
+          <div class='skills-row'>
+            <dt>{group.label[lang]}</dt>
+            <dd>{group.items.map(itemText).join(' · ')}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .skills {
+    margin: var(--space-8) 0 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .skills-row {
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .skills-row dt {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  .skills-row dd {
+    margin: var(--space-2) 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: 1.9;
+  }
+
+  @media (min-width: 48rem) {
+    .skills-row {
+      display: grid;
+      grid-template-columns: 12rem 1fr;
+      gap: var(--space-8);
+      align-items: baseline;
+    }
+
+    .skills-row dd {
+      margin-top: 0;
+    }
+  }
+</style>

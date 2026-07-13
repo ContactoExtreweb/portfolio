@@ -27,6 +27,8 @@ const en: Record<keyof typeof es, string> = {
   'projects.visit': 'Visit site',
   'projects.product.kicker': 'Own product · In development',
   'projects.secondary.title': 'Other projects',
+
+  'skills.title': 'Stack & skills',
 };
 
 export default en;
