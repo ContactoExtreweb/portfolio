@@ -39,6 +39,12 @@ svg {
   max-width: 100%;
 }
 
+/* Sin esto, los atributos width/height del HTML fijan el alto
+   y estiran la imagen cuando el CSS cambia el ancho */
+img {
+  height: auto;
+}
+
 h1,
 h2,
 h3,
