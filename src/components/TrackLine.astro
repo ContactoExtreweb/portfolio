@@ -1,0 +1,141 @@
+---
+/*
+  Línea de trazado: hilo conductor de la página.
+  - Desktop ancho (≥80rem): SVG en el margen izquierdo que se dibuja con el
+    scroll y hace un quiebro tipo curva de circuito al entrar en cada sección.
+  - Pantallas menores: barra fina de progreso en el borde izquierdo.
+*/
+---
+
+<div class='trackline' aria-hidden='true'>
+  <svg class='trackline-svg' xmlns='http://www.w3.org/2000/svg'>
+    <path class='trackline-path' fill='none'></path>
+  </svg>
+</div>
+<div class='trackline-bar' aria-hidden='true'></div>
+
+<script>
+  // @ts-nocheck
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  const svg = document.querySelector('.trackline-svg')
+  const path = document.querySelector('.trackline-path')
+  const bar = document.querySelector('.trackline-bar')
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // Geometría del trazado (px dentro de un SVG de 48 de ancho)
+  const X = 24 // eje vertical de la línea
+  const AMP = 14 // amplitud del quiebro
+  const APPROACH = 80 // distancia recta antes/después de cada curva
+  const CTRL = 40 // suavidad de la curva
+
+  function buildPathD(totalH) {
+    let d = `M ${X} 0`
+    let side = 1
+    document.querySelectorAll('main section[id]').forEach((sec) => {
+      const y = Math.round(sec.getBoundingClientRect().top + window.scrollY)
+      if (y - APPROACH <= 0 || y + APPROACH >= totalH) return
+      d += ` L ${X} ${y - APPROACH}`
+      d += ` C ${X} ${y - CTRL} ${X + AMP * side} ${y - CTRL} ${X + AMP * side} ${y}`
+      d += ` C ${X + AMP * side} ${y + CTRL} ${X} ${y + CTRL} ${X} ${y + APPROACH}`
+      side = -side
+    })
+    d += ` L ${X} ${totalH}`
+    return d
+  }
+
+  let lastH = 0
+
+  function setup() {
+    const totalH = document.body.scrollHeight
+    if (Math.abs(totalH - lastH) < 8) return // evita rehacer todo por cambios mínimos (barra de Safari iOS)
+    lastH = totalH
+
+    ScrollTrigger.getAll().forEach((st) => st.kill())
+    gsap.killTweensOf([path, bar])
+
+    svg.setAttribute('viewBox', `0 0 48 ${totalH}`)
+    svg.setAttribute('height', String(totalH))
+    path.setAttribute('d', buildPathD(totalH))
+
+    const length = path.getTotalLength()
+    path.style.strokeDasharray = String(length)
+
+    if (reduceMotion) {
+      path.style.strokeDashoffset = '0'
+      bar.style.transform = 'scaleY(1)'
+      return
+    }
+
+    path.style.strokeDashoffset = String(length)
+    const scroll = {
+      trigger: document.body,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.6,
+    }
+    gsap.to(path, { strokeDashoffset: 0, ease: 'none', scrollTrigger: scroll })
+    gsap.fromTo(bar, { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: scroll })
+  }
+
+  setup()
+
+  // Rehacer el trazado si cambia la altura del documento (imágenes, resize, fuentes)
+  let raf
+  const observer = new ResizeObserver(() => {
+    cancelAnimationFrame(raf)
+    raf = requestAnimationFrame(setup)
+  })
+  observer.observe(document.body)
+</script>
+
+<style>
+  .trackline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 48px;
+    pointer-events: none;
+    display: none;
+  }
+
+  .trackline-svg {
+    display: block;
+    width: 48px;
+  }
+
+  .trackline-path {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0.45;
+  }
+
+  .trackline-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100dvh;
+    background-color: var(--color-accent);
+    opacity: 0.5;
+    transform: scaleY(0);
+    transform-origin: top;
+    pointer-events: none;
+  }
+
+  /* Con margen lateral de sobra, la línea completa; si no, solo el progreso */
+  @media (min-width: 80rem) {
+    .trackline {
+      display: block;
+    }
+
+    .trackline-bar {
+      display: none;
+    }
+  }
+</style>
