@@ -31,6 +31,7 @@ export const skillGroups: SkillGroup[] = [
     label: { es: 'Backend / BaaS', en: 'Backend / BaaS' },
     items: [
       'Supabase (Auth, RLS, Storage)',
+      'SQL (MySQL, MariaDB)',
       { es: 'PHP (MVC con PDO)', en: 'PHP (MVC with PDO)' },
       { es: 'Funciones serverless (Netlify/Vercel)', en: 'Serverless functions (Netlify/Vercel)' },
     ],
@@ -43,7 +44,7 @@ export const skillGroups: SkillGroup[] = [
   {
     id: 'infra',
     label: { es: 'Infra y deploy', en: 'Infra & deploy' },
-    items: ['Netlify', 'Vercel', 'DNS', { es: 'Docker (nivel básico)', en: 'Docker (basic)' }],
+    items: ['Netlify', 'Vercel', 'Apache', 'DNS', { es: 'Docker (nivel básico)', en: 'Docker (basic)' }],
   },
   {
     id: 'seo',
