@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // site: 'https://…', // COMPLETAR: dominio pendiente de decidir
+  site: 'https://sauldev.es',
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],

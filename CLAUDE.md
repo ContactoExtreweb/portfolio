@@ -60,7 +60,7 @@ Antes de maquetar la sección de proyectos, confirmar con Saúl cuáles entran y
 - **Astro** confirmado.
 - GSAP + Lenis para animación si el diseño lo pide.
 - Sin backend salvo que se añada formulario de contacto (en ese caso: Resend vía función serverless, patrón que ya domina).
-- Deploy en Netlify o Vercel.
+- Deploy en **Vercel**. Dominio: **sauldev.es** (julio 2026).
 
 ## Decisiones ya tomadas (julio 2026, no volver a preguntar)
 
@@ -104,4 +104,4 @@ Antes de maquetar la sección de proyectos, confirmar con Saúl cuáles entran y
 
 ## Pendiente de decidir con Saúl (preguntar antes de asumir)
 
-- Dominio del portfolio.
+- (Nada por ahora.)
