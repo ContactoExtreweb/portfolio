@@ -74,6 +74,33 @@ select {
   padding-inline: var(--container-pad);
 }
 
+/* Patrón de sección: espaciado y título con índice en mono (ficha técnica) */
+.section {
+  padding-block: var(--space-16);
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-size: var(--text-2xl);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.section-title .section-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+@media (min-width: 48rem) {
+  .section {
+    padding-block: var(--space-24);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

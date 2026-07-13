@@ -1,0 +1,123 @@
+---
+import { useTranslations, type Lang } from '../../i18n'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+---
+
+<section class='section' id='sobre-mi'>
+  <div class='container'>
+    <h2 class='section-title'>
+      <span class='section-num'>01</span>{t('about.title')}
+    </h2>
+    <div class='about-grid'>
+      <img
+        class='about-photo'
+        src='/saul.jpg'
+        alt={t('about.photoAlt')}
+        width='800'
+        height='1000'
+        loading='lazy'
+        decoding='async'
+      />
+      <div class='about-text'>
+        <p>{t('about.p1')}</p>
+        <p>{t('about.p2')}</p>
+        <p>{t('about.p3')}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  .about-photo {
+    width: min(100%, 16rem);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 62ch;
+  }
+
+  .about-text p {
+    color: var(--color-text-muted);
+  }
+
+  .about-text p:first-child {
+    color: var(--color-text);
+  }
+
+  @media (min-width: 48rem) {
+    .about-grid {
+      grid-template-columns: 1fr 2.2fr;
+      gap: var(--space-12);
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%;
+      max-width: 20rem;
+      position: sticky;
+      top: var(--space-8);
+    }
+  }
+</style>
+
+<style>
+  .about-grid {
+    display: grid;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  .about-photo {
+    width: min(100%, 20rem);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 58ch;
+  }
+
+  .about-text p:first-child {
+    color: var(--color-text);
+  }
+
+  .about-text p {
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 48rem) {
+    .about-grid {
+      grid-template-columns: 2fr 3fr;
+      gap: var(--space-12);
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%;
+    }
+  }
+</style>
