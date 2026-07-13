@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets'
 import { useTranslations, type Lang } from '../../i18n'
+import photo from '../../assets/saul.jpg'
 
 interface Props {
   lang: Lang
@@ -15,14 +17,15 @@ const t = useTranslations(lang)
       <span class='section-num'>01</span>{t('about.title')}
     </h2>
     <div class='about-grid'>
-      <img
+      <Image
         class='about-photo'
-        src='/saul.jpg'
+        src={photo}
         alt={t('about.photoAlt')}
-        width='800'
-        height='1000'
+        widths={[320, 640, 960]}
+        sizes='(min-width: 48rem) 320px, 256px'
+        format='webp'
+        quality={80}
         loading='lazy'
-        decoding='async'
       />
       <div class='about-text'>
         <p>{t('about.p1')}</p>
